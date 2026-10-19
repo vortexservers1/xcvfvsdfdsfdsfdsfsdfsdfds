@@ -1,0 +1,764 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#09070f">
+  <meta name="description" content="A Vortex Servers cria servidores Discord personalizados, organizados e profissionais.">
+  <title>Vortex Servers | Servidores Discord</title>
+
+  <style>
+    :root {
+      --bg: #09070f;
+      --surface: #110d1b;
+      --card: #151020;
+      --purple: #9147ff;
+      --purple-light: #b58aff;
+      --text: #f7f3ff;
+      --muted: #a69bb8;
+      --border: rgba(173, 120, 255, .2);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 92%);
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(9, 7, 15, .94);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .navbar {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -.7px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: var(--purple-light);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+      font-size: 13px;
+      color: #d2c9df;
+    }
+
+    nav a:hover,
+    .footer-links a:hover {
+      color: var(--purple-light);
+    }
+
+    .nav-cta {
+      padding: 9px 14px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 20px;
+      border-radius: 10px;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+      transition: .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .primary {
+      background: var(--purple);
+      color: white;
+      box-shadow: 0 7px 25px rgba(145, 71, 255, .2);
+    }
+
+    .primary:hover {
+      background: #a366ff;
+    }
+
+    .outline {
+      background: rgba(255, 255, 255, .025);
+      border: 1px solid var(--border);
+    }
+
+    .outline:hover {
+      border-color: var(--purple);
+    }
+
+    .hero {
+      padding: 76px 0 48px;
+      background: radial-gradient(
+        ellipse at 50% 0%,
+        rgba(111, 44, 190, .2),
+        transparent 65%
+      );
+    }
+
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 12px;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--purple-light);
+      background: rgba(145, 71, 255, .07);
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 22px;
+    }
+
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #a77aff;
+    }
+
+    h1 {
+      font-size: clamp(36px, 6vw, 62px);
+      line-height: 1.08;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+
+    h1 span {
+      color: var(--purple-light);
+    }
+
+    .hero p {
+      max-width: 630px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-note {
+      margin-top: 18px;
+      color: #827790;
+      font-size: 12px;
+    }
+
+    .section {
+      padding: 64px 0;
+    }
+
+    .plans-section {
+      padding-top: 36px;
+      background: linear-gradient(
+        180deg,
+        rgba(145, 71, 255, .035),
+        transparent 70%
+      );
+    }
+
+    .heading {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 36px;
+    }
+
+    .section-label {
+      display: block;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 11px;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      font-size: clamp(27px, 4vw, 37px);
+      line-height: 1.2;
+      letter-spacing: -.8px;
+      margin-bottom: 12px;
+    }
+
+    .heading p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .plans-discord {
+      margin-top: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px 22px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      min-width: 0;
+    }
+
+    .featured {
+      border-color: var(--purple);
+      background: linear-gradient(
+        160deg,
+        rgba(145, 71, 255, .15),
+        var(--card) 55%
+      );
+      box-shadow: 0 0 35px rgba(145, 71, 255, .08);
+    }
+
+    .popular {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      padding: 4px 12px;
+      background: var(--purple);
+      color: white;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: .8px;
+      border-radius: 30px;
+    }
+
+    .plan-label {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--purple-light);
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .plan {
+      font-size: 23px;
+      font-weight: 800;
+      margin-top: 7px;
+    }
+
+    .price {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -1.5px;
+      margin-top: 15px;
+      line-height: 1.25;
+    }
+
+    .plan-desc {
+      color: var(--muted);
+      font-size: 13px;
+      margin: 10px 0 22px;
+      min-height: 44px;
+    }
+
+    .features {
+      list-style: none;
+      display: grid;
+      gap: 12px;
+      margin-bottom: 25px;
+      flex: 1;
+    }
+
+    .features li {
+      display: flex;
+      gap: 9px;
+      color: #ded5eb;
+      font-size: 13px;
+    }
+
+    .check {
+      color: var(--purple-light);
+      font-weight: 900;
+    }
+
+    .card .btn {
+      width: 100%;
+    }
+
+    .plan-footnote {
+      margin-top: 22px;
+      color: #827790;
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .info-card {
+      padding: 25px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+    }
+
+    .info-icon {
+      display: grid;
+      place-items: center;
+      width: 43px;
+      height: 43px;
+      margin-bottom: 16px;
+      border-radius: 12px;
+      background: rgba(145, 71, 255, .13);
+      color: var(--purple-light);
+      font-size: 21px;
+    }
+
+    .info-card h3 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .info-card p {
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .portfolio-panel {
+      padding: 36px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(ellipse at top right, rgba(145, 71, 255, .17), transparent 55%),
+        var(--surface);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .portfolio-panel p {
+      color: var(--muted);
+      font-size: 14px;
+      max-width: 550px;
+      margin-top: 10px;
+    }
+
+    .contact-panel {
+      text-align: center;
+      padding: 42px 24px;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      background: radial-gradient(
+        ellipse at top,
+        rgba(145, 71, 255, .14),
+        transparent 70%
+      );
+    }
+
+    .contact-panel p {
+      max-width: 560px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 25px 0;
+      color: #897e98;
+      font-size: 12px;
+    }
+
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    @media (max-width: 800px) {
+      .grid {
+        grid-template-columns: 1fr;
+        max-width: 480px;
+        margin: 0 auto;
+        gap: 22px;
+      }
+
+      .featured {
+        order: -1;
+      }
+
+      .plan-desc {
+        min-height: auto;
+      }
+
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .portfolio-panel {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 26px;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .navbar {
+        min-height: 68px;
+      }
+
+      .logo {
+        font-size: 18px;
+      }
+
+      nav {
+        gap: 12px;
+        font-size: 12px;
+      }
+
+      .nav-hide {
+        display: none;
+      }
+
+      .nav-cta {
+        padding: 8px 10px;
+      }
+
+      .hero p {
+        font-size: 14px;
+      }
+
+      .section {
+        padding: 48px 0;
+      }
+
+      .plans-section {
+        padding-top: 28px;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .price {
+        font-size: 33px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container navbar">
+      <a class="logo" href="#inicio">VORTEX <span>SERVERS</span></a>
+
+      <nav aria-label="Navegação principal">
+        <a href="#planos">Planos</a>
+        <a href="#sobre" class="nav-hide">Sobre</a>
+        <a href="portfolio.html" class="nav-hide">Portfólio</a>
+        <a class="nav-cta" href="https://discord.gg/twBWKWDZWF" target="_blank" rel="noopener noreferrer">Discord ↗</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="container hero-content">
+        <div class="eyebrow">
+          <span class="status-dot"></span>
+          SERVIDORES DISCORD PERSONALIZADOS
+        </div>
+
+        <h1>Seu servidor Discord,<br><span>em outro nível.</span></h1>
+
+        <p>
+          Criamos servidores organizados, personalizados e com visual profissional
+          para comunidades, lojas, projetos e muito mais.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn primary" href="#planos">Ver planos ↓</a>
+          <a class="btn outline" href="portfolio.html">Conhecer o portfólio ↗</a>
+        </div>
+
+        <div class="hero-note">
+          Organização • Personalização • Configuração
+        </div>
+      </div>
+    </section>
+
+    <section class="section plans-section" id="planos">
+      <div class="container">
+        <div class="heading">
+          <span class="section-label">Nossos planos</span>
+          <h2>Escolha o ideal para você</h2>
+          <p>
+            Do essencial ao completo: escolha o nível de personalização
+            que combina com sua comunidade.
+          </p>
+
+          <div class="plans-discord">
+            <a
+              class="btn outline"
+              href="https://discord.gg/twBWKWDZWF"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Entrar no nosso Discord ↗
+            </a>
+          </div>
+        </div>
+
+        <div class="grid">
+          <article class="card">
+            <span class="plan-label">Para começar</span>
+            <h3 class="plan">Básico</h3>
+            <div class="price">R$ 15,99</div>
+
+            <p class="plan-desc">
+              O essencial para deixar seu servidor organizado.
+            </p>
+
+            <ul class="features">
+              <li><span class="check">✓</span> Estrutura inicial do servidor</li>
+              <li><span class="check">✓</span> Categorias e canais organizados</li>
+              <li><span class="check">✓</span> Cargos básicos</li>
+              <li><span class="check">✓</span> Permissões essenciais</li>
+            </ul>
+
+            <a
+              class="btn outline"
+              href="https://wa.me/5521964048970?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20B%C3%A1sico%20da%20Vortex%20Servers."
+              target="_blank"
+              rel="noopener noreferrer"
+            >Escolher Básico ↗</a>
+          </article>
+
+          <article class="card featured">
+            <span class="popular">MAIS COMPLETO</span>
+            <span class="plan-label">Para sua comunidade</span>
+            <h3 class="plan">Completo</h3>
+            <div class="price">R$ 41,99</div>
+
+            <p class="plan-desc">
+              Uma estrutura mais elaborada e personalizada.
+            </p>
+
+            <ul class="features">
+              <li><span class="check">✓</span> Tudo do plano Básico</li>
+              <li><span class="check">✓</span> Cargos personalizados</li>
+              <li><span class="check">✓</span> Permissões configuradas</li>
+              <li><span class="check">✓</span> Organização avançada de canais</li>
+              <li><span class="check">✓</span> Configuração inicial de bots</li>
+            </ul>
+
+            <a
+              class="btn primary"
+              href="https://wa.me/5521964048970?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20Completo%20da%20Vortex%20Servers."
+              target="_blank"
+              rel="noopener noreferrer"
+            >Escolher Completo ↗</a>
+          </article>
+
+          <article class="card">
+            <span class="plan-label">Experiência premium</span>
+            <h3 class="plan">Premium</h3>
+            <div class="price">R$ 71,99</div>
+
+            <p class="plan-desc">
+              Uma experiência mais completa para seu projeto.
+            </p>
+
+            <ul class="features">
+              <li><span class="check">✓</span> Tudo do plano Completo</li>
+              <li><span class="check">✓</span> Estrutura mais detalhada</li>
+              <li><span class="check">✓</span> Configuração de bots adicionais</li>
+              <li><span class="check">✓</span> Área de suporte organizada</li>
+              <li><span class="check">✓</span> Personalização adicional</li>
+            </ul>
+
+            <a
+              class="btn outline"
+              href="https://wa.me/5521964048970?text=Ol%C3%A1%21%20Tenho%20interesse%20no%20plano%20Premium%20da%20Vortex%20Servers."
+              target="_blank"
+              rel="noopener noreferrer"
+            >Escolher Premium ↗</a>
+          </article>
+        </div>
+
+        <p class="plan-footnote">
+          Precisa de algo específico? Entre em contato para conversar sobre seu projeto.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" id="sobre">
+      <div class="container">
+        <div class="heading">
+          <span class="section-label">Por que a Vortex?</span>
+          <h2>Seu projeto merece organização</h2>
+          <p>
+            Cuidamos da estrutura do servidor para você focar na sua comunidade.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <article class="info-card">
+            <div class="info-icon">✦</div>
+            <h3>Visual organizado</h3>
+            <p>
+              Canais, categorias e cargos estruturados para deixar a navegação
+              mais clara e agradável.
+            </p>
+          </article>
+
+          <article class="info-card">
+            <div class="info-icon">⚙</div>
+            <h3>Configuração personalizada</h3>
+            <p>
+              Estrutura pensada de acordo com a finalidade do seu servidor,
+              seja comunidade, loja ou projeto.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="portfolio">
+      <div class="container">
+        <div class="portfolio-panel">
+          <div>
+            <span class="section-label">Portfólio</span>
+            <h2>Veja nossos projetos</h2>
+            <p>
+              Confira exemplos de estruturas e personalizações de servidores
+              Discord para conhecer melhor nosso trabalho.
+            </p>
+          </div>
+
+          <a class="btn primary" href="portfolio.html">Ver portfólio ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contato">
+      <div class="container">
+        <div class="contact-panel">
+          <span class="section-label">Vamos começar?</span>
+          <h2>Seu próximo servidor começa aqui.</h2>
+          <p>
+            Entre em contato para escolher um plano e explicar como você
+            quer que seu servidor fique.
+          </p>
+
+          <div class="hero-actions">
+            <a
+              class="btn primary"
+              href="https://wa.me/5521964048970?text=Ol%C3%A1%21%20Quero%20montar%20meu%20servidor%20com%20a%20Vortex%20Servers."
+              target="_blank"
+              rel="noopener noreferrer"
+            >Falar pelo WhatsApp ↗</a>
+
+            <a
+              class="btn outline"
+              href="https://discord.gg/twBWKWDZWF"
+              target="_blank"
+              rel="noopener noreferrer"
+            >Entrar no Discord ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-content">
+      <a class="logo" href="#inicio">VORTEX <span>SERVERS</span></a>
+
+      <span>© 2026 Vortex Servers. Todos os direitos reservados.</span>
+
+      <div class="footer-links">
+        <a href="#planos">Planos</a>
+        <a href="portfolio.html">Portfólio</a>
+        <a href="https://discord.gg/twBWKWDZWF" target="_blank" rel="noopener noreferrer">Discord</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
